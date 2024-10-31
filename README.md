@@ -23,6 +23,17 @@ Given the limitations of manual testing, there is an urgent need for an automate
 
 ![login](https://github.com/addyarishabh/Master-Thesis/blob/158c0fa7a79d2674464e2c9d7257a5b4cfd7c75e/Objectives.png?raw=true)
 
+### Literature Review:
+
+![login](https://github.com/addyarishabh/Master-Thesis/blob/3702240e21027adc1565198cf516e1b39e406ce7/literature%20review.png?raw=true)
+
+### Project Workflow Diagram:
+
+![login](https://github.com/addyarishabh/Master-Thesis/blob/3702240e21027adc1565198cf516e1b39e406ce7/Project%20Workflow.png?raw=true)
+
+### Tools used:
+
+![login](https://github.com/addyarishabh/Master-Thesis/blob/3702240e21027adc1565198cf516e1b39e406ce7/Tools.png?raw=true)
 
 
 
