@@ -39,5 +39,19 @@ Given the limitations of manual testing, there is an urgent need for an automate
 
 ![login](https://github.com/addyarishabh/Master-Thesis/blob/e358178d1e0a0115ee8fa44fa0041eb4709c4a1b/Image%20Preprocessing.png?raw=true)
 
+### Feature Engineering and Model Training:
 
+![login](https://github.com/addyarishabh/Master-Thesis/blob/a589ca43ee728dfa96c3f9d2bef5dab550b64c85/Model%20Training.png?raw=true)
+
+
+### Model Evaluation and Model Fine Tuning
+
+![login](https://github.com/addyarishabh/Master-Thesis/blob/a589ca43ee728dfa96c3f9d2bef5dab550b64c85/Model%20Evaluation%20and%20Fine%20Tuning.png?raw=true)
+
+### Interpretation of Model after Fine Tuning
+
+![login](https://github.com/addyarishabh/Master-Thesis/blob/a589ca43ee728dfa96c3f9d2bef5dab550b64c85/After%20Fine%20tuning.png?raw=true)
+
+
+###
 
