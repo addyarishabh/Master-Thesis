@@ -53,5 +53,25 @@ Given the limitations of manual testing, there is an urgent need for an automate
 ![login](https://github.com/addyarishabh/Master-Thesis/blob/a589ca43ee728dfa96c3f9d2bef5dab550b64c85/After%20Fine%20tuning.png?raw=true)
 
 
-###
+### Sample Results:
+
+-> Result 1:
+
+![login](https://github.com/addyarishabh/Master-Thesis/blob/167f8e8057857ab781fff46f67f796cb40773f89/Sample%20Result%201.png?raw=true)
+
+-> Result 2:
+
+![login](https://github.com/addyarishabh/Master-Thesis/blob/167f8e8057857ab781fff46f67f796cb40773f89/Sample%20Result%202.png?raw=true)
+
+### Future Work:
+
+![login](https://github.com/addyarishabh/Master-Thesis/blob/167f8e8057857ab781fff46f67f796cb40773f89/Future%20Work.png?raw=true)
+
+
+### Conclusion:
+
+![login](https://github.com/addyarishabh/Master-Thesis/blob/167f8e8057857ab781fff46f67f796cb40773f89/Conclusion.png?raw=true)
+
+### References:
+
 
