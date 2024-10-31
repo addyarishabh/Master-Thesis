@@ -35,6 +35,9 @@ Given the limitations of manual testing, there is an urgent need for an automate
 
 ![login](https://github.com/addyarishabh/Master-Thesis/blob/3702240e21027adc1565198cf516e1b39e406ce7/Tools.png?raw=true)
 
+### Image Preprocessing:
+
+![login](https://github.com/addyarishabh/Master-Thesis/blob/e358178d1e0a0115ee8fa44fa0041eb4709c4a1b/Image%20Preprocessing.png?raw=true)
 
 
 
