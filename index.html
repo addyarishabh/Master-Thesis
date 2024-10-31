@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetic Retinopathy Detection</title>
+    <style>
+        body {
+            background-image: url('your-image-url.jpg'); /* Set your custom background image URL */
+            background-size: cover;
+            color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.7); /* Add a semi-transparent background */
+            padding: 20px;
+            border-radius: 10px;
+        }
+        h1 {
+            margin-top: 20px; /* Adjust the margin top as needed */
+            color: skyblue; /* Change title color to sky blue */
+        }
+        form {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .button-container button {
+            margin-left: 10px;
+        }
+        .image-progress-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        img {
+            max-width: 100%;
+            max-height: 300px;
+            margin-right: 60px; /* Shift image further to the left */
+        }
+        .progress-bar-container {
+            width: 50px;
+            height: 300px;
+            background-color: #555;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            align-items: flex-end; /* Align items at the bottom */
+            margin-right: 60px; /* Adjust to shift the bar to the right */
+        }
+        .progress-bar {
+            width: 100%;
+            height: 0;
+            text-align: center;
+            color: white;
+            background-color: green;
+            transition: height 0.5s;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            font-size: 12px; /* Reduce font size of percentage */
+            padding-bottom: 5px; /* Add padding to make space for the text */
+        }
+        .threshold-line {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: white;
+            bottom: 50%;
+        }
+        .threshold-label-container {
+            position: absolute;
+            left: 100%;
+            bottom: 50%;
+            transform: translateY(50%);
+            color: white;
+            font-size: 12px; /* Font size for threshold label */
+            white-space: nowrap; /* Prevent wrapping */
+            margin-left: 10px; /* Space between bar and label */
+            display: flex;
+            align-items: center;
+        }
+        .threshold-label-container::before {
+            content: '▲';
+            display: block;
+            margin-right: 5px; /* Position the arrow to the left of the text */
+            color: white; /* Ensure the arrow color matches the text */
+        }
+        .suggestion-box, .result-box {
+            background-color: white;
+            color: black;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Deep Learning based Diabetic Retinopathy Detection Model</h1>
+
+    <form id="upload-form" action="/predict" method="post" enctype="multipart/form-data">
+        <label for="file">Upload an image:</label>
+        <input type="file" id="file" name="file" accept=".jpg, .jpeg, .png" required>
+        <div class="button-container">
+            <button type="submit">Predict</button>
+        </div>
+    </form>
+
+    <div class="image-progress-container" style="display: none;">
+        <img id="uploaded-image" src="">
+        <div class="progress-bar-container">
+            <div id="progress-bar" class="progress-bar"></div>
+            <div class="threshold-line"></div>
+            <div class="threshold-label-container">
+                <div>Threshold 0.5</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="result" class="result-box"></div>
+</div>
+
+<script>
+document.getElementById('upload-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    var form = event.target;
+    var formData = new FormData(form);
+
+    fetch('/predict', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if ('error' in data) {
+            document.getElementById('result').innerText = data['error'];
+        } else {
+            var predictionProbability = data['prediction_probability'];
+            var resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '';
+            var resultText = document.createElement('p');
+            resultText.innerText = 'Prediction Probability (Threshold: 0.5): ' + predictionProbability.toFixed(4);
+            resultDiv.appendChild(resultText);
+            
+            var imageProgressContainer = document.querySelector('.image-progress-container');
+            var progressBar = document.getElementById('progress-bar');
+            imageProgressContainer.style.display = 'flex';
+            progressBar.style.height = (predictionProbability * 100) + '%';
+            progressBar.innerText = (predictionProbability * 100).toFixed(2) + '%';
+
+            if (predictionProbability > 0.5) {
+                resultText.style.color = 'red';
+                resultText.innerText += ' - Diabetic Retinopathy Detected';
+                progressBar.style.backgroundColor = 'red';
+
+                // Add suggestions for diabetic retinopathy
+                var suggestionBox = document.createElement('div');
+                suggestionBox.className = 'suggestion-box';
+                suggestionBox.innerText = 'Suggestion: Please consult an ophthalmologist for further evaluation and treatment.';
+                resultDiv.appendChild(suggestionBox);
+            } else {
+                resultText.style.color = 'green';
+                resultText.innerText += ' - Healthy Eye';
+                progressBar.style.backgroundColor = 'green';
+            }
+
+            var uploadedImage = document.getElementById('uploaded-image');
+            uploadedImage.src = URL.createObjectURL(form['file'].files[0]);
+            uploadedImage.style.display = 'block';
+        }
+    })
+    .catch(error => console.error('Error:', error));
+});
+</script>
+
+</body>
+</html>
